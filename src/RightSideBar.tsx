@@ -1,6 +1,6 @@
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { ref } from "firebase/database";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { useList } from "react-firebase-hooks/database";
 import Event from "./Event";
 import { database } from "./firebase.init";
@@ -12,12 +12,21 @@ const RightSideBar = ({
     setEventToShow: Dispatch<SetStateAction<eventInterface | undefined>>;
 }) => {
     const [snapshots, loading, error] = useList(ref(database, "/"));
+
+    useEffect(() => {
+        if (!loading && snapshots && snapshots.length) {
+            setEventToShow(snapshots[0].val());
+        }
+    }, [loading, snapshots, snapshots]);
+
     return (
         <div className="h-full bg-slate-200 w-full">
             <div className="m-2 bg-white card p-4 rounded-none">
                 <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold">Events</h2>
-                    <AdjustmentsHorizontalIcon className="h-8 w-8" />
+                    <a href="#filter-modal" className="btn">
+                        <AdjustmentsHorizontalIcon className="h-8 w-8" />
+                    </a>
                 </div>
                 <div className="divider"></div>
                 <div className="overflow-y-scroll h-[calc(100vh-10rem)] pb-8">

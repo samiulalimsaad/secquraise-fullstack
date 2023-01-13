@@ -10,8 +10,8 @@ const EventDetails = ({ event }: { event: eventInterface }) => {
     );
 
     return (
-        <div className="h-full w-full">
-            <h2 className="text-center capitalize text-xl font-semibold">
+        <div className="h-full w-full p-4">
+            <h2 className="text-center capitalize text-2xl font-semibold">
                 {event.Gender}
             </h2>
             <div className="grid grid-cols-2 justify-center items-center h-full">
