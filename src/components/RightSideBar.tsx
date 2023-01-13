@@ -9,8 +9,10 @@ import Event from "./Event/Event";
 import FilterModal from "./FilterModal";
 
 const RightSideBar = ({
+    setTotal,
     setEventToShow,
 }: {
+    setTotal: Dispatch<SetStateAction<{ male: number; female: number }>>;
     setEventToShow: Dispatch<SetStateAction<eventInterface | undefined>>;
 }) => {
     const [filter, setFilter] = useState<filterInterface | null>(null);
@@ -27,12 +29,29 @@ const RightSideBar = ({
 
     useEffect(() => {
         if (!loading && snapshots && snapshots.length) {
-            for (let i = 0; i < snapshots.length; i++) {
+            let index = -1;
+            let male = 0;
+            let female = 0;
+
+            snapshots.map((e, i) => {
                 if (Object.keys(snapshots[i]).length > 0) {
-                    setEventToShow(snapshots[i]);
-                    break;
+                    if (index < 0) {
+                        index = i;
+                    }
+                    if ((e.Gender = "Male")) {
+                        ++male;
+                    }
+                    if ((e.Gender = "Female")) {
+                        ++female;
+                    }
                 }
-            }
+            });
+
+            setEventToShow(snapshots[index]);
+            setTotal({
+                male,
+                female,
+            });
         }
     }, [loading, filter]);
 

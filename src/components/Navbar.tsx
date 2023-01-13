@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const Navbar = () => {
+const Navbar = ({ total }: { total: { male: number; female: number } }) => {
     return (
         <div className="navbar bg-blue-800 text-white">
             <div className="flex-1">
@@ -24,10 +24,10 @@ const Navbar = () => {
                     </div>
                 </div>
                 <button className="rounded-none text-xl btn btn-success">
-                    25
+                    {total.male}
                 </button>
                 <button className="rounded-none text-xl btn btn-error">
-                    25
+                    {total.female}
                 </button>
             </div>
         </div>

@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import EventDetails from "../components/Event/EventDetails";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSideBar from "../components/RightSideBar";
 import { eventInterface } from "../interface/eventInterface";
 
-const Layout = () => {
+const Layout = ({
+    setTotal,
+}: {
+    setTotal: Dispatch<SetStateAction<{ male: number; female: number }>>;
+}) => {
     const [eventToShow, setEventToShow] = useState<eventInterface>();
 
     return (
@@ -16,7 +20,10 @@ const Layout = () => {
                 </div>
             </div>
             <div className="col-span-3">
-                <RightSideBar setEventToShow={setEventToShow} />
+                <RightSideBar
+                    setEventToShow={setEventToShow}
+                    setTotal={setTotal}
+                />
             </div>
         </div>
     );
