@@ -1,19 +1,32 @@
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { ref } from "firebase/database";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useListVals } from "react-firebase-hooks/database";
 import Event from "./Event";
+import FilterModal from "./FilterModal";
 import { database } from "./firebase.init";
 import { eventInterface } from "./interface/eventInterface";
+
+export interface filterInterface {
+    key: "Location" | "Gender" | "Date";
+    value: string;
+}
 
 const RightSideBar = ({
     setEventToShow,
 }: {
     setEventToShow: Dispatch<SetStateAction<eventInterface | undefined>>;
 }) => {
+    const [filter, setFilter] = useState<filterInterface | null>(null);
+
     const [snapshots, loading, error] = useListVals(ref(database, "/"), {
-        transform: (val: eventInterface) =>
-            val.Location === "Chennai" ? val : null,
+        transform: (val: eventInterface) => {
+            return filter?.value
+                ? val[filter.key] === filter.value
+                    ? val
+                    : null
+                : val;
+        },
     });
 
     useEffect(() => {
@@ -25,7 +38,7 @@ const RightSideBar = ({
                 }
             }
         }
-    }, [loading]);
+    }, [loading, filter]);
 
     return (
         <div className="h-full bg-slate-200 w-full">
@@ -60,6 +73,7 @@ const RightSideBar = ({
                     </div>
                 </div>
             </div>
+            <FilterModal filter={filter} setFilter={setFilter} />
         </div>
     );
 };
