@@ -9,7 +9,7 @@ const Event = () => {
                         <span>1/2/3</span>
                     </div>
                 </div>
-                <p>Description</p>
+                <p>Person Detected.</p>
             </div>
         </div>
     );
