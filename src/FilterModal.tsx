@@ -1,4 +1,3 @@
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useState } from "react";
 import CheckBox from "./CheckBox";
 
@@ -15,7 +14,17 @@ const FilterModal = ({
     setFilter: Dispatch<SetStateAction<filterInterface | null>>;
 }) => {
     const [tab, setTab] = useState(allFilter[0]);
-    const [input, setInput] = useState("");
+
+    const dateFieldHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const date = new Date(e.target.value);
+
+        const temp = `${date.getDate()}-${date.toLocaleString("en-us", {
+            month: "short",
+            year: "2-digit",
+        })}`;
+
+        setFilter({ key: "Date", value: temp.replaceAll(" ", "-") });
+    };
 
     return (
         <div className="modal" id="filter-modal">
@@ -64,33 +73,28 @@ const FilterModal = ({
                     ))}
                 {tab === "Date" && (
                     <div>
-                        <form
-                            className="form-control my-4"
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                setFilter({ key: "Date", value: input });
-                            }}
-                        >
+                        <div className="form-control my-4">
                             <div className="input-group ">
                                 <input
-                                    type="text"
+                                    type="date"
                                     placeholder="Enter a date"
                                     className="input input-bordered w-full"
-                                    value={input}
-                                    onChange={(e) => setInput(e.target.value)}
+                                    onChange={dateFieldHandler}
                                 />
-                                <button
-                                    className="btn btn-square"
-                                    type="submit"
-                                >
-                                    <MagnifyingGlassIcon className="h-6 w-6" />
-                                </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 )}
                 <div className="modal-action">
-                    <a href="#" className="btn">
+                    <button
+                        className="btn btn-warning"
+                        onClick={(e) => {
+                            setFilter({ key: "Location", value: "" });
+                        }}
+                    >
+                        Reset
+                    </button>
+                    <a href="#" className="btn btn-success">
                         Ok
                     </a>
                 </div>
