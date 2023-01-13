@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { eventInterface } from "./interface/eventInterface";
+import { eventInterface } from "../../interface/eventInterface";
 
 const Event = ({
     event,

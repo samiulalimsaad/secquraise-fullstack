@@ -1,8 +1,8 @@
 import { ref as storageRef } from "firebase/storage";
 import { useDownloadURL } from "react-firebase-hooks/storage";
-import { storage } from "./firebase.init";
-import { eventInterface } from "./interface/eventInterface";
-import SideBySide2Cols from "./SideBySide2Cols";
+import { storage } from "../../firebase/firebase.init";
+import { eventInterface } from "../../interface/eventInterface";
+import SideBySide2Cols from "../../utils/SideBySide2Cols";
 
 const EventDetails = ({ event }: { event: eventInterface }) => {
     const [value, loading, error] = useDownloadURL(

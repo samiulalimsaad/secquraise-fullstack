@@ -1,8 +1,8 @@
 import { useState } from "react";
-import EventDetails from "./EventDetails";
-import { eventInterface } from "./interface/eventInterface";
-import LeftSidebar from "./LeftSidebar";
-import RightSideBar from "./RightSideBar";
+import EventDetails from "../components/Event/EventDetails";
+import LeftSidebar from "../components/LeftSidebar";
+import RightSideBar from "../components/RightSideBar";
+import { eventInterface } from "../interface/eventInterface";
 
 const Layout = () => {
     const [eventToShow, setEventToShow] = useState<eventInterface>();

@@ -2,15 +2,11 @@ import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { ref } from "firebase/database";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useListVals } from "react-firebase-hooks/database";
-import Event from "./Event";
+import { database } from "../firebase/firebase.init";
+import { eventInterface } from "../interface/eventInterface";
+import { filterInterface } from "../interface/filterInterface";
+import Event from "./Event/Event";
 import FilterModal from "./FilterModal";
-import { database } from "./firebase.init";
-import { eventInterface } from "./interface/eventInterface";
-
-export interface filterInterface {
-    key: "Location" | "Gender" | "Date";
-    value: string;
-}
 
 const RightSideBar = ({
     setEventToShow,

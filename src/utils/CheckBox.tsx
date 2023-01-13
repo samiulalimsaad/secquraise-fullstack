@@ -1,5 +1,5 @@
 import { MouseEventHandler, useEffect, useState } from "react";
-import { filterInterface } from "./RightSideBar";
+import { filterInterface } from "../interface/filterInterface";
 
 const CheckBox = ({
     filter,

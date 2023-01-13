@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import CheckBox from "./CheckBox";
-
-import { filterInterface } from "./RightSideBar";
+import { filterInterface } from "../interface/filterInterface";
+import CheckBox from "../utils/CheckBox";
 
 const allFilter = ["Location", "Gender", "Date"];
 const locationFilter = ["Chennai", "Hyderabad", "Bangalore"];

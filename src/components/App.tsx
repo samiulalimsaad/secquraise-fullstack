@@ -1,4 +1,4 @@
-import Layout from "./Layout";
+import Layout from "../utils/Layout";
 import Navbar from "./Navbar";
 
 function App() {
