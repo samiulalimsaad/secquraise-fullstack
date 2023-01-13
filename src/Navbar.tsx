@@ -1,3 +1,5 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+
 const Navbar = () => {
     return (
         <div className="navbar bg-blue-800 text-white">
@@ -10,11 +12,16 @@ const Navbar = () => {
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="input input-bordered bg-blue-700"
-                    />
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            placeholder=""
+                            className="input input-bordered bg-blue-700"
+                        />
+                        <button className="btn btn-square bg-blue-700">
+                            <MagnifyingGlassIcon className="h-6 w-6" />
+                        </button>
+                    </div>
                 </div>
                 <button className="rounded-none text-xl btn btn-success">
                     25
